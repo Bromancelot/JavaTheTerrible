@@ -1,0 +1,15 @@
+Exercise 2-1
+
+6.) Restart the application, enter a valid subtotal, and enter 20 when the
+program asks you whether you want to continue. What happens and why?
+
+The application finished it's process and ended. Since I did not say yes(y) the
+application assumed I wanted to exit. Then exited. Since the choice is defined
+as a string, it will accept "20" as an answer.
+The only answer that is defined to do anything else is "Y".
+
+
+7.) Restart the application and enter two values separated by whitespace (like
+1000 20) before pressing the Enter key. What happened and why?
+
+Nothing. I haven't pressed the enter key.
