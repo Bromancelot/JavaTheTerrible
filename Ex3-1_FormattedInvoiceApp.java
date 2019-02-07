@@ -1,6 +1,11 @@
 import java.util.Scanner;
 import java.text.NumberFormat;
 
+/*
+    CHC-7Feb2019
+        Added debug messages to output for formatted and unformatted results
+*/
+
 public class FormattedInvoiceApp
 {
     public static void main(String[] args)
