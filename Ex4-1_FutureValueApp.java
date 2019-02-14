@@ -5,6 +5,8 @@ import java.text.NumberFormat;
     CHC-14FEB2019
         Added debugging statement within the for loop that calculates the future value.
         Displays the month and future value each time through the loop.
+        
+        Added exit message as well.
 */
 
 public class FutureValueApp {
