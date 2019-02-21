@@ -11,7 +11,7 @@ import java.util.Scanner;
             50% discount for subtotals >= $500
         Customers with no type don't get a discount.
         
-        Added new method called getDiscountPercent. Includes customer type,
+        Added new method called discountPercent. Includes customer type,
             and subtotal.
 */
 
@@ -29,8 +29,37 @@ public class InvoiceApp {
             String customerType = sc.next();
             System.out.print("Enter subtotal:   ");
             double subtotal = sc.nextDouble();
-
+            
             // get the discount percent
+            double discountPercent = InvoiceApp.getDiscountPercent(customerType, subtotal);
+
+            // calculate the discount amount and round to 2 decimals
+            double discountAmount = subtotal * discountPercent;
+            discountAmount = Math.ceil(discountAmount * 100) / 100;
+
+            // calculate the total
+            double total = subtotal - discountAmount;
+
+            // format and display the results
+            NumberFormat currency = NumberFormat.getCurrencyInstance();
+            NumberFormat percent = NumberFormat.getPercentInstance();
+            System.out.println(
+                "Discount percent: " + percent.format(discountPercent) + "\n"
+              + "Discount amount:  " + currency.format(discountAmount) + "\n"
+              + "Total:            " + currency.format(total) + "\n");
+
+            // see if the user wants to continue
+            System.out.print("Continue? (y/n): ");
+            choice = sc.next();
+            System.out.println();
+        }
+        
+        System.out.println("Deuces!");
+    }
+    
+     // get the discount percent
+    public static double getDiscountPercent(
+            String customerType, double subtotal) {            
             double discountPercent = 0.0;
             switch(customerType) {
                 case "r":
@@ -57,27 +86,7 @@ public class InvoiceApp {
                         discountPercent = .5;
                     }
                     break;
-            }
-
-            // calculate the discount amount and round to 2 decimals
-            double discountAmount = subtotal * discountPercent;
-            discountAmount = Math.ceil(discountAmount * 100) / 100;
-
-            // calculate the total
-            double total = subtotal - discountAmount;
-
-            // format and display the results
-            NumberFormat currency = NumberFormat.getCurrencyInstance();
-            NumberFormat percent = NumberFormat.getPercentInstance();
-            System.out.println(
-                "Discount percent: " + percent.format(discountPercent) + "\n"
-              + "Discount amount:  " + currency.format(discountAmount) + "\n"
-              + "Total:            " + currency.format(total) + "\n");
-
-            // see if the user wants to continue
-            System.out.print("Continue? (y/n): ");
-            choice = sc.next();
-            System.out.println();
-        }
-    }
+                }    
+            return discountPercent;
+           }
 }
