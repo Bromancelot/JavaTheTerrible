@@ -1,6 +1,5 @@
 import java.text.NumberFormat;
-import java.util.InputMismatchException;;;;; // followed online guide
-import java.util.Scanner;
+import java.util.InputMismatchException; // followed online guide
 import java.util.Scanner;
 
 /*
@@ -25,7 +24,7 @@ public class InvoiceApp
             double subtotal = InvoiceApp.getValidSubtotal(sc);
             
             // get the discount percent
-            double discountPercent = InvoiceApp.getDiscountPercent(customerType, subtotal);;;;;;;;;;;;;;;            
+            double discountPercent = InvoiceApp.getDiscountPercent(customerType, subtotal);        
             
             // calculate the discount amount and total
             double discountAmount = subtotal * discountPercent;
@@ -71,9 +70,9 @@ public class InvoiceApp
         {
             try 
             {
-                System.out.print("Enter subtotal:   ");;;;
+                System.out.print("Enter subtotal:   ");
                 String input = sc.nextLine().trim().split(" ")[0];
-                double d = new Double(input);;
+                double d = new Double(input);
                 if (!(d > 0 && d < 10000)) {
                     throw new NumberFormatException("WOMP");
                 }
@@ -83,8 +82,7 @@ public class InvoiceApp
             
             catch (NumberFormatException nfe) 
             {
-                System.err.println("Invalid subtotal");;;
-                continue;
+                System.err.println("Invalid subtotal");
             }
             
         }
@@ -92,7 +90,7 @@ public class InvoiceApp
     
     public static double getDiscountPercent(String customerType, double subtotal) 
     {
-        double discountPercent = 999;;;;;;;;;
+        double discountPercent = 999;
         if (customerType.equalsIgnoreCase("R"))
         {
             if (subtotal < 100)
