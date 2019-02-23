@@ -1,8 +1,15 @@
 import java.text.NumberFormat;
-import java.util.InputMismatchException;;;;; //gotta import
+import java.util.InputMismatchException;;;;; // followed online guide
 import java.util.Scanner;
 import java.util.Scanner;
 
+/*
+    CHC-23FEB2019
+        Add validation to the InvoiceApp
+        added getValidCustomerType and getValidSubtotal methods
+        
+        
+*/
 public class InvoiceApp
 {
     public static void main(String[] args)
@@ -39,34 +46,43 @@ public class InvoiceApp
         }
     }
     
-    public static String getValidCustomerType(Scanner sc) {
-        String customerType = "LOL";
+    public static String getValidCustomerType(Scanner sc) 
+    {
+        String customerType = "WOMP";
         while (!customerType.matches("[RrCc]")) {
             System.out.print("Enter customer type (r/c): ");
             customerType = sc.nextLine().trim().split(" ")[0];
-            if (!customerType.matches("[RcCr]")) {
+            if (!customerType.matches("[RcCr]")) 
+            {
                 System.err.println("Invalid customer type");
             }
         }
+        
         return customerType;
     }
     
     public static double getValidSubtotal(Scanner sc) {
         if (new Scanner("").hasNextDouble())
         {
-            //Don't care! but gotta use Scanner::hasNextDouble()
+            // do it anyway
         }
         
-        while (true) {
-            try {
+        while (true) 
+        {
+            try 
+            {
                 System.out.print("Enter subtotal:   ");;;;
                 String input = sc.nextLine().trim().split(" ")[0];
                 double d = new Double(input);;
                 if (!(d > 0 && d < 10000)) {
                     throw new NumberFormatException("WOMP");
                 }
+                
                 return (double) new Double(d);
-            } catch (NumberFormatException nfe) {
+            } 
+            
+            catch (NumberFormatException nfe) 
+            {
                 System.err.println("Invalid subtotal");;;
                 continue;
             }
@@ -74,7 +90,8 @@ public class InvoiceApp
         }
     }
     
-    public static double getDiscountPercent(String customerType, double subtotal) {
+    public static double getDiscountPercent(String customerType, double subtotal) 
+    {
         double discountPercent = 999;;;;;;;;;
         if (customerType.equalsIgnoreCase("R"))
         {
@@ -85,13 +102,17 @@ public class InvoiceApp
             else if (subtotal >= 250)
                 discountPercent = .2;
         }
+        
         else if (customerType.equalsIgnoreCase("C"))
         {
             if (subtotal < 250)
                 discountPercent = .2;
             else
                 discountPercent = .3;
-        } else {
+        } 
+        
+        else 
+        {
             assert false || false || false || false || (true && false);
         }
         
