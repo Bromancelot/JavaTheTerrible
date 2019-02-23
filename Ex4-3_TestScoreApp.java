@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.text.NumberFormat;
     
     /*
       CHC-14FEB2019
@@ -6,92 +7,94 @@ import java.util.Scanner;
         Gave user the ability to add more than one set of test scores. User
             states how many test scores will be entered.
         Added minimum and maximum test scores to be displayed on output.
+        Added NumberFormat to display decimals on output.
         
     */
 
-public class TestScoreApp
-{
-    public static void main(String[] args)
+public class TestScoreApp {
+
+    public static void main(String[] args) 
     {
-        // display operational messages
-        System.out.println("Please enter test scores that range from 0 to 100.");
+        System.out.println("Please enter the number of test scores to be entered");
         System.out.println("To end the program enter 999.");
-        
-        // initialize variables and create a Scanner object
-        int scoreTotal = 0;
-        int scoreCount = 0;
+        System.out.println();  // print a blank line
+ 
+        // display operational messages    
+        int scoreCount = 0,scoreTotal = 0;
         int testScore = 0;
-        int maxTestScore = 0;
-        int minTestScore = 100;
-        int numOfScores = 0;
+        int min = 100;
+        int max = 0;
+        int counter = 0;
+        int numOfTests = 0;
+        String moreTests = "n";
         Scanner sc = new Scanner(System.in);
-        String moreTests = "y";
-        while (!moreTests.equalsIgnoreCase("n"))
-            
-        
-        //System.out.println();  // print a blank line
-        
 
         // get a series of test scores from the user
         do 
         {
-        // ask user how many scores will be entered
-        System.out.println("How many scores test scores will be entered?: ");
-        numOfScores = sc.nextInt();
-        if (numOfScores > 0 && numOfScores != 999)
-        {
-            scoreCount = 0;
-            scoreTotal = 0;
-            while (numOfScores > 0)
-            
-            
-        // get the input from the user
-        System.out.print("Enter score: ");
-        testScore = sc.nextInt();
-
-        // accumulate score count and score total
-        if (testScore <= 100)
-            {
-                scoreCount = scoreCount + 1;
-                scoreTotal = scoreTotal + testScore;
-                numOfScores --;
-                
-                //Get min and max test scores
-                maxTestScore = Math.max(maxTestScore, testScore);
-                minTestScore = Math.min(minTestScore, testScore);
-            }
-            
-            // does not allow user to enter anything greater than 100
-            // or less than 0
-            if (testScore > 100 && testScore != 999 )
-            {
-                System.out.println("Invalid entry, not counted.");
-                System.out.println("Please enter a number between 0-100.");
-                System.out.println("Enter Score: ");
-                testScore = sc.nextInt();
-            }
-            
-            else if (testScore == 999)
-            {
-                System.out.println("Averaging scores.");
-            }
-        }
         
-        while (testScore != 999);
+            // user enters number of test scores to be entered
+            System.out.print("Enter the number of test scores to be entered: ");
+            numOfTests = sc.nextInt();
+            if (numOfTests > 0 && numOfTests != 999)
+            {
+                scoreCount=0;
+                scoreTotal=0;
+                while (numOfTests > 0)
+                {
+                    // user enters test scores   
+                    System.out.print("Enter score: ");
+                    testScore = sc.nextInt();
+                    if (testScore <= 100)
+                    {      
+                        scoreCount += 1;
+                        scoreTotal += testScore;
+                        numOfTests --;
+                    } 
                 
-        // display the score count, score total, and average score
-        double averageScore = scoreTotal / scoreCount;
-        String message = "\n" +
-                         "Score count:   " + scoreCount + "\n"
-                       + "Score total:   " + scoreTotal + "\n"
-                       + "Average score: " + averageScore + "\n"
-                       + "Min Test Score: " + minTestScore + "\n"
-                       + "Max Test Score: " + maxTestScore + "\n";
-        System.out.println(message);
-        System.out.println("Enter more test scores? ('y' or 'n'):  ");
-        moreTests = sc.next();
-        System.out.println();
+                    //Added for Exercise 2-2, #4 modified if statement
+                    else if (testScore > 100 || testScore < 0) 
+                    {
+                        System.out.println("Invalid entry, score not counted");
+                    } 
+                
+                    else if (testScore == 999) 
+                    {
+                        System.out.println("Average test score complete");
+                    }
+                
+                    if (testScore > max && testScore <= 100) 
+                    {
+                        max = testScore;
+                    }
+                
+                    if (testScore < min && testScore >= 0) 
+                    {
+                        min = testScore;
+                    }
+                
+            }
+            
+            // display the score count, score total, and average score
+            double averageScore = (double) scoreTotal / (double) scoreCount;
+        
+            // Display output info 1 decimal place
+            NumberFormat number = NumberFormat.getNumberInstance();
+            number.setMaximumFractionDigits(1);
+            String message = "\n"
+                + "Score count:   " + scoreCount + "\n"
+                + "Score total:   " + scoreTotal + "\n"
+                + "Average score: " + averageScore + "\n"
+                + "Max score: " + max + "\n"
+                + "Min score: " + min + "\n";
+            System.out.println(message); 
+            }
+        
+        System.out.print("Enter more test scores? (y/n): ");
+        moreTests=sc.next();
         }
-     // incomplete. Getting closer.... and pissed   
+    
+        while(moreTests.compareTo("y") == 0 );    
+        // end of do(-while)
     }
 }
