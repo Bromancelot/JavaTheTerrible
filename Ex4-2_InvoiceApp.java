@@ -69,7 +69,7 @@ public class InvoiceApp {
                     } else if (subtotal >= 100 && subtotal < 250) {
                         discountPercent = .1;
                     } else if (subtotal >= 250 && subtotal < 500) {
-                        discountPercent = .25;
+                        discountPercent = .30;
                     } else if (subtotal > 500) {
                         discountPercent = .3;
                     }
