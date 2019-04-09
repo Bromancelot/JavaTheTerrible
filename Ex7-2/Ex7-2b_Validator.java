@@ -1,73 +1,121 @@
-import java.text.NumberFormat;
+import java.util.Scanner;
 
 /*
-    CHC-28Mar2019
-        Added equals method.
-*/
 
-public class LineItem
+    @author CHC-7Mar2019
+             
+             Added Scanner class.
+             Validator now uses methods getDouble, getDoubleWithinRange, 
+             getInt, and getIntWithinRange instead of the FutureValueApp.
+             Methods getDoubleWithinRange and getIntWithinRange, have been
+             changed to getDouble, and getInt.
+ 
+ 
+ */
+
+public class Validator 
 {
-    private Product product;
-    private int quantity;
-    private double total;
-
-    public LineItem()
+    public static double getDouble(Scanner sc, String prompt) 
     {
-        this.product = new Product();
-        this.quantity = 0;
-        this.total = 0;
+        double d = 0.0;
+        boolean isValid = false;
+        while (!isValid) 
+        {
+            System.out.print(prompt);
+            if (sc.hasNextDouble()) 
+            {
+                d = sc.nextDouble();
+                isValid = true;
+            } 
+            
+            else 
+            {
+                System.out.println("Error! Invalid decimal value. Try again.");
+            }
+            
+            sc.nextLine();  // discard any other data entered on the line
+        }
+        
+        return d;
     }
 
-    public void setProduct(Product product)
+    public static double getDouble(Scanner sc, String prompt,
+            double min, double max) 
     {
-        this.product = product;
+        double d = 0.0;
+        boolean isValid = false;
+        while (!isValid) 
+        {
+            d = getDouble(sc, prompt);
+            if (d <= min) 
+            {
+                System.out.println(
+                        "Error! Number must be greater than " + min + ".");
+            } 
+            
+            else if (d >= max) 
+            {
+                System.out.println(
+                        "Error! Number must be less than " + max + ".");
+            } 
+            
+            else 
+            {
+                isValid = true;
+            }
+        }
+        
+        return d;
     }
 
-    public Product getProduct()
+    public static int getInt(Scanner sc, String prompt) 
     {
-        return product;
+        int i = 0;
+        boolean isValid = false;
+        while (!isValid) 
+        {
+            System.out.print(prompt);
+            if (sc.hasNextInt()) 
+            {
+                i = sc.nextInt();
+                isValid = true;
+            } 
+            
+            else 
+            {
+                System.out.println("Error! Invalid integer value. Try again.");
+            }
+            
+            sc.nextLine();  // discard any other data entered on the line
+        }
+        
+        return i;
     }
 
-    public void setQuantity(int quantity)
+    public static int getInt(Scanner sc, String prompt,
+            int min, int max) 
     {
-        this.quantity = quantity;
-    }
-
-    public int getQuantity()
-    {
-        return quantity;
-    }
-
-    public double getTotal()
-    {
-        this.calculateTotal();
-        return total;
-    }
-
-    private void calculateTotal()
-    {
-        double price = product.getPrice();
-        total = quantity * price;
-    }
-
-    public String getFormattedTotal()
-    {
-        NumberFormat currency = NumberFormat.getCurrencyInstance();
-        return currency.format(this.getTotal());
-    }
-         //equals method
-	 public boolean equals(Object object) 
-         {
-		if (object instanceof LineItem) 
-                {
-			LineItem li = (LineItem) object;
-			if ( this.product.equals(li.getProduct()) &&
-				  this.quantity == li.getQuantity()) 
-                        {
-				return true;
-			}
-		}
-		return false;
-	}
-
+        int i = 0;
+        boolean isValid = false;
+        while (!isValid) 
+        {
+            i = getInt(sc, prompt);
+            if (i <= min) 
+            {
+                System.out.println(
+                        "Error! Number must be greater than " + min + ".");
+            } else if (i >= max) 
+            {
+                System.out.println(
+                        "Error! Number must be less than " + max + ".");
+            } 
+            
+            else 
+            {
+                isValid = true;
+            }
+        }
+        
+        return i;
+    }    
 }
