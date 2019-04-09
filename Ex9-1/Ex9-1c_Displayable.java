@@ -5,6 +5,8 @@
         Added single method called getDisplayText. Returns a string.
 
 */
-public interface Displayable {
+
+public interface Displayable 
+{
 	String getDisplayText();
 }
