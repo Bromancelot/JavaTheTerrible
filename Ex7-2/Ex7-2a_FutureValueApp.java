@@ -1,22 +1,42 @@
 import java.util.*;
 import java.text.*;
 
-public class FutureValueApp {
+/*
+  @author CHC-7MAR2019
+            
+            Moved methods getDouble, getDoubleWithinRange, getInt, and
+            getIntWithinRange to the Validator class.
+            App now uses methods from Validator class.
+            Moved calculateFutureValue method to new class,
+            FinancialCalculations.
+            App now uses the calculateFutureValue method 
+            from FinancialCalculations.
+            
+            
+ */
 
-    public static void main(String[] args) {
+public class FutureValueApp 
+{
+
+    public static void main(String[] args) 
+    {
+        //Validator object
+        Validator v = new Validator();
+        
         System.out.println("Welcome to the Future Value Calculator\n");
 
         Scanner sc = new Scanner(System.in);
         String choice = "y";
 
-        while (choice.equalsIgnoreCase("y")) {
+        while (choice.equalsIgnoreCase("y")) 
+        {
             // get the input from the user
             System.out.println("DATA ENTRY");
-            double monthlyInvestment = Console.getDouble(sc,
+            double monthlyInvestment = Validator.getDouble(sc,
                     "Enter monthly investment: ", 0, 1000);
-            double interestRate = Console.getDouble(sc,
+            double interestRate = Validator.getDouble(sc,
                     "Enter yearly interest rate: ", 0, 30);
-            int years = Console.getInt(sc,
+            int years = Validator.getInt(sc,
                     "Enter number of years: ", 0, 100);
 
             // calculate the future value
