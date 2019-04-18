@@ -1,0 +1,10 @@
+1.) Added new a pack named murach.test to the project.
+2.) Moved LineItemApp.java from murach.lineitem to murach.test, then deleted murach.lineitem.
+3.) Refractored LineItemApp.java
+4.) Renamed murach.database to murach.db.
+5.) Commented out the import statement in ProductDB.java, then uncommented import statement.
+6.) Built the ch10-ex1_LineItem project (using the Build command), and renamed the .jar file to murach.jar.
+7.) Copied the murach.jar file into the ch10_ex1_Product/src directory
+8.) Deleted murch.business/database/presentation packages.
+9.) Added the murach.jar file to the Product project's library.
+10.) Modified the import statement in ProductDB so correct errors.
