@@ -30,6 +30,7 @@ public class ArrayTestApp
   //print the 9th value and every 9th value after
    for (int i = 8; i < testArray.length; i = i + 9) {
      System.out.println("9th values: " + testArray[i]);
+     //System.out.printf("Value %2d is: %f%n", i, arrayTest[i]);
     }
   }
 }
