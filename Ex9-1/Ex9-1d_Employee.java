@@ -3,46 +3,37 @@
         Implements the DepartmantConstants and Displayable interfaces.
 */
 
-public class Employee implements Displayable, DepartmentConstants
+public class Employee implements DepartmentConstants, Displayable 
 {
+
     private int department;
     private String firstName;
     private String lastName;
-    private double salary;
 
-    public Employee(int department, String lastName, String firstName,
-        double salary)
+    public Employee(int department, String lastName, String firstName) 
     {
         this.department = department;
         this.lastName = lastName;
         this.firstName = firstName;
-        this.salary = salary;
     }
 
-    public String getDisplayText() 
+	@Override
+        public String getDisplayText()		
         {
-            String departmentName = "";	
-            if (department == ADMIN) 
-            {
-                departmentName = "Admin";
-            } 
-    
-	    else if (department == MARKETING) 
-            {
-                departmentName = "Marketing";
-	    }
-	    else if (department == EDITORIAL) 
-            {
-                departmentName = "Editorial";
-            }
-            else 
-            {
-                departmentName = "Unknown Department";
-            }
+		String dept = "unknown";
+		if (department == ADMIN) 
+                {
+			dept = "Administration";
+		} 
+                else if (department ==EDITORIAL) 
+                {
+			dept = "Editorial";
+		} 
+                else if (department == MARKETING) 
+                {
+			dept = "Martketing";
+		}
+		return dept + ": " + lastName + ", " + firstName;
+	}
 
-            return ("Department : " + departmentName
-                    + "\nFirst Name : " + firstName
-                    + "\nLast Name  : " + lastName
-                    + "\nSalary     : " + salary);
-        }
 }
