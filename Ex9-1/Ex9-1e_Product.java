@@ -1,13 +1,13 @@
 /*
 
     CHC-09APR2019
-        pineapples
+        Product class now uses getDisplayText method from Displayable
 
 */
 
 import java.text.NumberFormat;
 
-public class Product
+public class Product implements Displayable
 {
     private String code;
     private String description;
@@ -32,7 +32,8 @@ public class Product
         this.code = code;
     }
 
-    public String getCode(){
+    public String getCode()
+    {
         return code;
     }
 
@@ -61,5 +62,12 @@ public class Product
         NumberFormat currency = NumberFormat.getCurrencyInstance();
         return currency.format(price);
     }
-
+    
+    @Override
+    public String getDisplayText() 
+    {
+        return "Product Code        : " + this.code 
+            + "\nProduct Description : " + this.description
+            + "\nProduct Price       : " + this.getFormattedPrice() + "\n";
+    }
 }
