@@ -8,5 +8,6 @@
 
 public interface Displayable 
 {
-	String getDisplayText();
+    public String getDisplayText();
+
 }
